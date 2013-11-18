@@ -81,7 +81,7 @@ function cors(opts) {
         assert.optionalArrayOfString(opts.headers, 'options.headers');
 
         var headers = (opts.headers || []).slice(0);
-//        var origins = opts.origins || ['*'];
+        var origins = opts.origins || ['*'];
 
         EXPOSE_HEADERS.forEach(function (h) {
                 if (headers.indexOf(h) === -1)
@@ -91,7 +91,7 @@ function cors(opts) {
         // Handler for simple requests
         function restifyCORSSimple(req, res, next) {
                 var origin;
-                if (!(origin = matchOrigin(req, req.origins))) {
+                if (!(origin = matchOrigin(req, origins))) {
                         next();
                         return;
                 }
